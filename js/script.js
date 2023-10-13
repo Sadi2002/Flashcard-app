@@ -14,23 +14,6 @@ const createCard = function (pol, eng) {
 </div>`;
 
   card.insertAdjacentHTML("beforeend", html);
-  console.log(html);
-};
-
-const randomEnglishWord = function () {
-  const randomWord = words[Math.trunc(Math.random() * words.length)];
-  return randomWord;
-};
-
-const getRandomIndexFromEnglishArray = async function (random) {
-  const text = await translate(random, "pl");
-  return text;
-};
-
-const translateWord = await getRandomIndexFromEnglishArray(randomEnglishWord());
-
-const translateEnglishWord = function () {
-  return translateWord;
 };
 
 lookTranslateBtn.addEventListener("click", function () {
@@ -39,9 +22,17 @@ lookTranslateBtn.addEventListener("click", function () {
 
 thumbUpBtn.addEventListener("click", function () {
   card.textContent = "";
-  const randomEnglish = randomEnglishWord();
-  const translateEnglish = translateEnglishWord(randomEnglish);
 
-  console.log(randomEnglish, translateEnglish);
-  createCard(translateEnglish, randomEnglish);
+  if (card.classList.contains("rotate")) {
+    card.classList.remove("rotate");
+  }
+
+  const randomEnglishWord = words[Math.trunc(Math.random() * words.length)];
+
+  const translateEnglishWord = async function () {
+    const text = await translate(randomEnglishWord, "pl");
+    return text;
+  };
+
+  translateEnglishWord().then((resp) => createCard(resp, randomEnglishWord));
 });
