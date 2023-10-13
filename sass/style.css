@@ -152,6 +152,42 @@ body {
   font-weight: bold;
   color: #494949;
   margin-bottom: 20px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  position: relative;
+  -webkit-transform: perspective(600px);
+          transform: perspective(600px);
+}
+
+.front-card,
+.back-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+.front-card {
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+
+.back-card {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
 }
 
 .controls {
@@ -225,7 +261,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   border-radius: 15px;
-  background: linear-gradient(150deg, #f6d28a 0%, #e8ddaa 100%);
+  background: linear-gradient(150deg, #ffd18d 0%, #e0bc96 100%);
   cursor: pointer;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
@@ -239,5 +275,10 @@ body {
           transform: translateY(2px);
   -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.rotate {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
 }
 /*# sourceMappingURL=style.css.map */
