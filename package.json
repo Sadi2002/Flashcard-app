@@ -1,5 +1,7 @@
 {
   "dependencies": {
-    "google-translate-api": "^2.3.0"
+    "google-translate-api": "^0.1.1",
+    "popular-english-words": "^1.0.2",
+    "translate": "^2.0.2"
   }
 }
