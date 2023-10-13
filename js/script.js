@@ -6,14 +6,17 @@ const randomEnglishWord = words[Math.trunc(Math.random() * words.length)];
 const englishWord = document.querySelector(".english");
 const polishWord = document.querySelector(".polish");
 
+const wordsCounter = words.length;
+console.log(words.length);
+
 // const randomNum = Math.trunc(Math.random() * wordArr.length);
 // const randomWord = wordArr[randomNum];
 
 const getRandomIndex = async function (random) {
   const text = await translate(random, "pl");
 
-  englishWord.textContent = random;
-  polishWord.textContent = text;
+  // englishWord.textContent = random;
+  // polishWord.textContent = text;
 };
 
 const translateWord = await getRandomIndex(randomEnglishWord);

@@ -1,0 +1,42 @@
+.navigation {
+  width: 100%;
+  background-color: $white;
+  box-shadow: $light-shadow;
+  height: 120px;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 0 0 15px 15px;
+
+  &__title {
+    color: $dark;
+    line-height: 30px;
+    font-size: 22px;
+  }
+
+  &__counter {
+    font-weight: bold;
+    color: $dark;
+    font-size: 18px;
+
+    &--color {
+      color: $orange;
+    }
+  }
+}
+
+@media (min-width: 576px) {
+  .navigation {
+    padding-top: 20px;
+
+    &__title {
+      font-size: 25px;
+    }
+
+    &__counter {
+      font-size: 22px;
+    }
+  }
+}
