@@ -20,11 +20,21 @@ body {
 .container {
   max-width: 800px;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .navigation {
   width: 100%;
-  background-color: #fff;
+  background-color: #f1f0e9;
   -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   height: 120px;
@@ -39,6 +49,7 @@ body {
           flex-direction: column;
   gap: 20px;
   border-radius: 0 0 15px 15px;
+  margin-bottom: 30px;
 }
 
 .navigation__title {
@@ -54,7 +65,7 @@ body {
 }
 
 .navigation__counter--color {
-  color: #ee6d3e;
+  color: #f9a852;
 }
 
 @media (min-width: 576px) {
@@ -67,5 +78,66 @@ body {
   .navigation__counter {
     font-size: 22px;
   }
+}
+
+.current-state {
+  width: 100%;
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-bottom: 30px;
+}
+
+.current-state__unknown, .current-state__known {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70px;
+  white-space: nowrap;
+  gap: 5px;
+}
+
+.current-state__circle {
+  width: 10px;
+  height: 10px;
+  background-color: #ff5555;
+  border-radius: 50%;
+}
+
+.current-state__circle.green-circle {
+  background-color: #4bb459;
+}
+
+.current-state__title, .current-state__counter {
+  font-weight: bold;
+  color: #686868;
+}
+
+.current-state__counter {
+  color: #494949;
+}
+
+.card {
+  width: 300px;
+  height: 300px;
+  background: #ee4a4a;
+  background: linear-gradient(150deg, #ffd18d 0%, #e0bc96 100%);
+  -webkit-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
 }
 /*# sourceMappingURL=style.css.map */
