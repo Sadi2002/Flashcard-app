@@ -15,6 +15,7 @@ body {
           justify-content: center;
   height: 100vh;
   background-color: #eddec5;
+  overflow-y: hidden;
 }
 
 .container {
@@ -134,10 +135,109 @@ body {
 .card {
   width: 300px;
   height: 300px;
-  background: #ee4a4a;
   background: linear-gradient(150deg, #ffd18d 0%, #e0bc96 100%);
-  -webkit-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
   border-radius: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30px;
+  font-weight: bold;
+  color: #494949;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 70px;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.controls div {
+  width: 70px;
+  height: 50px;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.controls div:active {
+  -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+
+.controls div i {
+  font-size: 20px;
+  color: #f1f0e9;
+}
+
+.controls div.thumb-down {
+  background-color: #ff5555;
+}
+
+.controls div.eye {
+  background-color: #f9a852;
+}
+
+.controls div.thumb-up {
+  background-color: #4bb459;
+}
+
+.unknown-data {
+  width: 95%;
+  height: 50px;
+  -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  color: #494949;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 15px;
+  background: linear-gradient(150deg, #f6d28a 0%, #e8ddaa 100%);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  font-size: 15px;
+}
+
+.unknown-data:active {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+  -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=style.css.map */

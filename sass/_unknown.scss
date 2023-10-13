@@ -1,0 +1,20 @@
+.unknown-data {
+  width: 95%;
+  height: 50px;
+  box-shadow: $light-shadow;
+  color: $dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background: linear-gradient(150deg, #f6d28a 0%, #e8ddaa 100%);
+  cursor: pointer;
+  transition: all 0.3s;
+  transform: translateY(0);
+  font-size: 15px;
+
+  &:active {
+    transform: translateY(2px);
+    box-shadow: $lighter-shadow;
+  }
+}
