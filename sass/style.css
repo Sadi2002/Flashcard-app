@@ -305,6 +305,10 @@ body {
           box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
 }
 
+.unknown-btn {
+  font-weight: bold;
+}
+
 .rotate {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
