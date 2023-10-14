@@ -1,6 +1,6 @@
 // Importing
-import translate from "node_modules/translate/index.min.js";
-import { words } from "node_modules/popular-english-words/words.js";
+import translate from "./node_modules/translate/index.min.js";
+import { words } from "./node_modules/popular-english-words/words.js";
 
 // Fetching elements
 const lookTranslateBtn = document.querySelector(".eye");
@@ -35,6 +35,8 @@ let counter = 0;
 let knownCount = 0;
 let unknownCount = 0;
 let unknownListCount = 0;
+
+let getUnknownWords = [];
 
 navCounter.textContent = counter;
 unknowWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
@@ -99,6 +101,39 @@ const handleThumbs = function (e) {
   count();
 };
 
+//////////////////////////////////////////
+
+const handleThumbDown = function (e) {
+  showAnimationOnce();
+
+  card.textContent = "";
+
+  if (e.target.classList.contains("thumb-up")) {
+    knownCounter();
+  } else {
+    unknownCounter();
+  }
+
+  if (card.classList.contains("rotate")) {
+    card.classList.remove("rotate");
+  }
+
+  const randomEnglishWord = words[Math.trunc(Math.random() * words.length)];
+
+  const firstLetterUp = randomEnglishWord.charAt(0).toUpperCase();
+
+  const randomEngWord = firstLetterUp + randomEnglishWord.slice(1);
+
+  const translateEnglishWord = async function () {
+    const text = await translate(randomEngWord, "pl");
+    return text;
+  };
+
+  translateEnglishWord().then((resp) => createCard(resp, randomEngWord));
+
+  count();
+};
+
 // Function which toggle animation on card, when you press eye button
 lookTranslateBtn.addEventListener("click", function () {
   card.classList.toggle("rotate");
@@ -108,7 +143,7 @@ lookTranslateBtn.addEventListener("click", function () {
 thumbUpBtn.addEventListener("click", handleThumbs);
 
 // Function which show which words you can't
-thumbDownBtn.addEventListener("click", handleThumbs);
+thumbDownBtn.addEventListener("click", handleThumbDown);
 
 unknownBtn.addEventListener("click", function () {
   if (unknowWordsNav.textContent == 0) {
