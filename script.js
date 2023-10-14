@@ -1,6 +1,6 @@
 // Importing
-import translate from "../node_modules/translate/index.min.js";
-import { words } from "../node_modules/popular-english-words/words.js";
+import translate from "translate/index.min";
+import { words } from "popular-english-words/words";
 
 // Fetching elements
 const lookTranslateBtn = document.querySelector(".eye");
