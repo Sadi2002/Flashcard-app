@@ -16,6 +16,7 @@ body {
   height: 100vh;
   background-color: #eddec5;
   overflow-y: hidden;
+  min-height: 700px;
 }
 
 .container {
@@ -176,6 +177,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   text-align: center;
+  padding: 0 10px;
 }
 
 .front-card {
@@ -199,6 +201,9 @@ body {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  position: relative;
 }
 
 .controls div {
@@ -217,20 +222,26 @@ body {
       -ms-flex-align: center;
           align-items: center;
   cursor: pointer;
-  -webkit-transition: all 0.3s;
-  transition: all 0.3s;
+  -webkit-transition: all 0.6s;
+  transition: all 0.6s;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
 }
 
 .controls div:active {
   -webkit-box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2);
-  -webkit-transform: translateY(2px);
-          transform: translateY(2px);
+  -webkit-transform: translate(-50%, 2px);
+          transform: translate(-50%, 2px);
 }
 
 .controls div i {
   font-size: 20px;
   color: #f1f0e9;
+  pointer-events: none;
 }
 
 .controls div.thumb-down {
@@ -280,5 +291,11 @@ body {
 .rotate {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+}
+
+.controlFlex {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 /*# sourceMappingURL=style.css.map */
