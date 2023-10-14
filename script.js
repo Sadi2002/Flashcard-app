@@ -10,15 +10,17 @@ const thumbDownBtn = document.querySelector(".thumb-down");
 const navCounter = document.querySelector(".navigation__counter--color");
 const known = document.querySelector(".current-state__counter--known");
 const unknown = document.querySelector(".current-state__counter--unknown");
-const unknowWordsNav = document.querySelector(
+const unknownWordsNav = document.querySelector(
   ".container-unknown__nav-counter"
 );
 const unknownContainer = document.querySelector(".container-unknown");
 const unknownBtn = document.querySelector(".unknown-btn");
 const backToWords = document.querySelector(".container-unknown__back");
+const unknownList = document.querySelector(".container-unknown__list");
 
 // Funtion which caontain card frame
 const createCard = function (pol, eng) {
+  card.textContent = "";
   const html = ` <div class="front-card">
   <div class="card__title--front">${pol}</div>
 </div>
@@ -29,20 +31,23 @@ const createCard = function (pol, eng) {
   card.insertAdjacentHTML("beforeend", html);
 };
 
+const createList = function (translateWord, word) {
+  const html = `<p><span>${word} - ${translateWord}</span></p>`;
+
+  unknownList.insertAdjacentHTML("beforeend", html);
+};
+
 // Adding counter in nav
 
 let counter = 0;
 let knownCount = 0;
 let unknownCount = 0;
-let unknownListCount = 0;
-
-let getUnknownWords = [];
 
 navCounter.textContent = counter;
-unknowWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
+unknownWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
 
 const count = function () {
-  if (counter !== 3425) {
+  if (counter !== words.length) {
     navCounter.textContent = ++counter;
   } else {
     counter = 0;
@@ -58,6 +63,7 @@ const knownCounter = function () {
 };
 const unknownCounter = function () {
   unknown.textContent = ++unknownCount;
+  unknownWordsNav.textContent = `Ilość słów, których nie znasz: ${unknown.textContent}`;
 };
 
 // Function which run only once
@@ -69,6 +75,10 @@ const showAnimationOnce = function () {
 
   return () => {};
 };
+
+//////////////////////////
+
+//////////////////////////
 
 const handleThumbs = function (e) {
   showAnimationOnce();
@@ -101,8 +111,6 @@ const handleThumbs = function (e) {
   count();
 };
 
-//////////////////////////////////////////
-
 const handleThumbDown = function (e) {
   showAnimationOnce();
 
@@ -130,6 +138,7 @@ const handleThumbDown = function (e) {
   };
 
   translateEnglishWord().then((resp) => createCard(resp, randomEngWord));
+  translateEnglishWord().then((resp) => createList(resp, randomEngWord));
 
   count();
 };
@@ -146,13 +155,6 @@ thumbUpBtn.addEventListener("click", handleThumbs);
 thumbDownBtn.addEventListener("click", handleThumbDown);
 
 unknownBtn.addEventListener("click", function () {
-  if (unknowWordsNav.textContent == 0) {
-    unknowWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
-  } else if (unknowWordsNav.textContent == 1) {
-    unknowWordsNav.textContent = `Powtórz ${unknownCounter()} słowo`;
-  } else if (unknowWordsNav.textContent == 0) {
-  }
-
   unknownContainer.style.opacity = 1;
   unknownContainer.style.visibility = "visible";
 });
