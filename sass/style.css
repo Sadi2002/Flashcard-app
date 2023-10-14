@@ -112,7 +112,11 @@ body {
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  opacity: 0;
+  visibility: hidden;
   margin-bottom: 30px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .current-state__unknown, .current-state__known {
@@ -222,6 +226,9 @@ body {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
   position: relative;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .controls div {
@@ -247,6 +254,7 @@ body {
   top: 0;
   -webkit-transform: translate(-50%);
           transform: translate(-50%);
+  opacity: 0;
 }
 
 .controls div:active {
@@ -274,6 +282,18 @@ body {
   background-color: #4bb459;
 }
 
+.controls .controls__start {
+  width: 70%;
+  min-height: 50px;
+  background-color: #4bb459;
+  color: #f1f0e9;
+  font-size: 20px;
+  opacity: 1;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  letter-spacing: 2px;
+}
+
 .unknown-data {
   width: 95%;
   min-height: 50px;
@@ -297,6 +317,8 @@ body {
   -webkit-transform: translateY(0);
           transform: translateY(0);
   font-size: 15px;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .unknown-data:active {

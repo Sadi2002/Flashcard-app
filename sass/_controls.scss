@@ -5,6 +5,7 @@
   justify-content: space-evenly;
   transition: all 0.3s;
   position: relative;
+  align-items: center;
 
   & div {
     width: 70px;
@@ -20,6 +21,7 @@
     left: 50%;
     top: 0;
     transform: translate(-50%);
+    opacity: 0;
 
     &:active {
       box-shadow: $lighter-shadow;
@@ -44,4 +46,15 @@
       background-color: $green;
     }
   }
+}
+
+.controls .controls__start {
+  width: 70%;
+  min-height: 50px;
+  background-color: $green;
+  color: $white;
+  font-size: 20px;
+  opacity: 1;
+  transition: all 0.3s;
+  letter-spacing: 2px;
 }

@@ -12,6 +12,8 @@
   transition: all 0.3s;
   transform: translateY(0);
   font-size: 15px;
+  opacity: 0;
+  visibility: hidden;
 
   &:active {
     transform: translateY(2px);

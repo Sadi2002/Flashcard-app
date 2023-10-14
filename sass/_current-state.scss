@@ -4,6 +4,10 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  opacity: 0;
+  visibility: hidden;
+  margin-bottom: 30px;
+  transition: all 0.3s;
 
   &__unknown,
   &__known {
@@ -34,5 +38,4 @@
   &__counter {
     color: $dark;
   }
-  margin-bottom: 30px;
 }
