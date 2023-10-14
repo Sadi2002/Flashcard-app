@@ -10,7 +10,12 @@ const thumbDownBtn = document.querySelector(".thumb-down");
 const navCounter = document.querySelector(".navigation__counter--color");
 const known = document.querySelector(".current-state__counter--known");
 const unknown = document.querySelector(".current-state__counter--unknown");
-const controlsBtns = document.querySelectorAll(".controls div");
+const unknowWordsNav = document.querySelector(
+  ".container-unknown__nav-counter"
+);
+const unknownContainer = document.querySelector(".container-unknown");
+const unknownBtn = document.querySelector(".unknown-btn");
+const backToWords = document.querySelector(".container-unknown__back");
 
 // Funtion which caontain card frame
 const createCard = function (pol, eng) {
@@ -29,8 +34,10 @@ const createCard = function (pol, eng) {
 let counter = 0;
 let knownCount = 0;
 let unknownCount = 0;
+let unknownListCount = 0;
 
 navCounter.textContent = counter;
+unknowWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
 
 const count = function () {
   if (counter !== 3425) {
@@ -63,9 +70,8 @@ const showAnimationOnce = function () {
 
 const handleThumbs = function (e) {
   showAnimationOnce();
-  card.textContent = "";
 
-  // if(e.target ==)
+  card.textContent = "";
 
   if (e.target.classList.contains("thumb-up")) {
     knownCounter();
@@ -103,3 +109,20 @@ thumbUpBtn.addEventListener("click", handleThumbs);
 
 // Function which show which words you can't
 thumbDownBtn.addEventListener("click", handleThumbs);
+
+unknownBtn.addEventListener("click", function () {
+  if (unknowWordsNav.textContent == 0) {
+    unknowWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
+  } else if (unknowWordsNav.textContent == 1) {
+    unknowWordsNav.textContent = `Powtórz ${unknownCounter()} słowo`;
+  } else if (unknowWordsNav.textContent == 0) {
+  }
+
+  unknownContainer.style.opacity = 1;
+  unknownContainer.style.visibility = "visible";
+});
+
+backToWords.addEventListener("click", function () {
+  unknownContainer.style.opacity = 0;
+  unknownContainer.style.visibility = "hidden";
+});
