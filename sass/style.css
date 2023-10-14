@@ -275,7 +275,7 @@ body {
 
 .unknown-data {
   width: 95%;
-  height: 50px;
+  min-height: 50px;
   -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   color: #494949;
@@ -398,7 +398,7 @@ body {
 
 .container-unknown__back {
   width: 70%;
-  height: 50px;
+  min-height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
