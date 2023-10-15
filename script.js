@@ -20,15 +20,26 @@ const unknownCount = document.querySelector(".current-state__counter--unknown");
 const unknownWordsTitle = document.querySelector(
   ".container-unknown__nav-counter--text"
 );
-let curentWord = "";
-function getRandomWord(array) {
-  const word = array[Math.floor(Math.random() * array.length)];
-  return word;
-}
+const unknownList = document.querySelector(".container-unknown__list");
 
+// Global scope variables
+let currentWord = "";
 let counter = 0;
 let knownCounter = 0;
 let unknownCounter = 0;
+
+navCounter.textContent = counter;
+knownCount.textContent = knownCounter;
+unknownCount.textContent = unknownCounter;
+
+const createUnknownList = function (word, engWord) {
+  const html = `<p><span>${word} - ${engWord}</span></p>`;
+
+  unknownList.insertAdjacentHTML("beforeend", html);
+};
+
+// Set which handling every word which user doesn't know
+const unknownArray = new Set();
 
 // Function which runs only once
 const showAnimationOnce = function () {
@@ -48,8 +59,6 @@ const showAnimationOnce = function () {
 
   currentState.style.opacity = 1;
   currentState.style.visibility = "visible";
-
-  return () => {};
 };
 
 // Function to create a card frame
@@ -66,39 +75,67 @@ const createCard = function (pol, eng) {
   card.insertAdjacentHTML("beforeend", html);
 };
 
-navCounter.textContent = counter;
-knownCount.textContent = knownCounter;
-unknownCount.textContent = unknownCounter;
-unknownWordsTitle.textContent = `Brawo! Nie musisz nic powtarzać.`;
+// Function to get a random word from the array
+const getRandomWord = () => words[Math.floor(Math.random() * words.length)];
 
-const unknownArray = new Set();
+// Function to capitalize the first letter of a word
+const capitalizeFirstLetter = (word) =>
+  word.charAt(0).toUpperCase() + word.slice(1);
 
-startBtn.addEventListener("click", function () {
-  showAnimationOnce();
+// Function to translate and create a card
+const translateAndCreateCard = async () => {
+  const randomEngWord = getRandomWord();
+  currentWord = randomEngWord;
+  const capitalizedWord = capitalizeFirstLetter(randomEngWord);
+  const translatedWord = await translate(capitalizedWord, "pl");
 
+  createCard(translatedWord, randomEngWord);
+};
+
+// Function to handle thumb up click
+const handleThumbUp = () => {
+  knownCounter++;
   counter++;
   navCounter.textContent = counter;
+  knownCount.textContent = knownCounter;
+  translateAndCreateCard();
 
-  let fetchText;
-  let translateText;
+  if (card.classList.contains("rotate")) {
+    card.classList.remove("rotate");
+  }
+};
 
-  const getRandomWord = (array) => {
-    return array[Math.floor(Math.random() * array.length)];
-  };
-
-  const capitalizeFirstLetter = (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  };
+// Function to handle thumb down click
+const handleThumbDown = () => {
+  unknownCounter++;
+  counter++;
+  navCounter.textContent = counter;
+  unknownCount.textContent = unknownCounter;
 
   const translateAndCreateCard = async () => {
-    const randomEngWord = getRandomWord(words);
+    let convertSetToArray = [...unknownArray];
+
+    const translateUnknownWord = await translate(currentWord, "pl");
+
+    convertSetToArray.push(currentWord, translateUnknownWord);
+
+    createUnknownList(convertSetToArray[0], convertSetToArray[1]);
+
+    const randomEngWord = getRandomWord();
+    currentWord = randomEngWord;
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
-    curentWord = randomEngWord;
 
     createCard(translatedWord, randomEngWord);
   };
 
+  translateAndCreateCard();
+};
+
+startBtn.addEventListener("click", function () {
+  showAnimationOnce();
+  counter++;
+  navCounter.textContent = counter;
   translateAndCreateCard();
 });
 
@@ -106,167 +143,9 @@ lookTranslateBtn.addEventListener("click", function () {
   card.classList.toggle("rotate");
 });
 
-thumbUpBtn.addEventListener("click", function () {
-  knownCounter++;
-  counter++;
-  navCounter.textContent = counter;
-  knownCount.textContent = knownCounter;
+thumbUpBtn.addEventListener("click", handleThumbUp);
 
-  const getRandomWord = (array) => {
-    return array[Math.floor(Math.random() * array.length)];
-  };
-
-  const capitalizeFirstLetter = (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  };
-
-  const translateAndCreateCard = async () => {
-    const randomEngWord = getRandomWord(words);
-    curentWord = randomEngWord;
-    const capitalizedWord = capitalizeFirstLetter(randomEngWord);
-    const translatedWord = await translate(capitalizedWord, "pl");
-
-    createCard(translatedWord, randomEngWord);
-  };
-
-  translateAndCreateCard();
-});
-
-thumbDownBtn.addEventListener("click", function () {
-  let fetchText;
-  let translateText;
-
-  unknownCounter++;
-  counter++;
-  navCounter.textContent = counter;
-  unknownCount.textContent = unknownCounter;
-
-  const capitalizeFirstLetter = (word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1);
-  };
-  const translateAndCreateCard = async () => {
-    fetchText = curentWord;
-    translateText = curentWord;
-
-    unknownArray.add(fetchText);
-    unknownArray.add(translateText);
-
-    const randomEngWord = getRandomWord(words);
-    curentWord = randomEngWord;
-    const capitalizedWord = capitalizeFirstLetter(randomEngWord);
-    const translatedWord = await translate(capitalizedWord, "pl");
-
-    console.log(unknownArray);
-
-    createCard(translatedWord, randomEngWord);
-  };
-
-  translateAndCreateCard();
-});
-
-// Function to create a list item
-// const createList = function (translateWord, word) {
-//   const html = `<p><span>${word} - ${translateWord}</span></p>`;
-//   unknownList.insertAdjacentHTML("beforeend", html);
-// };
-
-// Adding counter in nav
-// let counter = 0;
-// let knownCount = 0;
-// let unknownCount = 0;
-
-// navCounter.textContent = counter;
-// unknownWordsNav.textContent = "Brawo, nie masz niczego do powtórzenia";
-
-// const count = function () {
-//   if (counter !== words.length) {
-//     navCounter.textContent = ++counter;
-//   } else {
-//     counter = 0;
-//     navCounter.textContent = ++counter;
-//   }
-// };
-
-// known.textContent = counter;
-// unknown.textContent = counter;
-
-// const knownCounter = function () {
-//   known.textContent = knownCount++;
-// };
-
-// const unknownCounter = function () {
-//   unknown.textContent = ++unknownCount;
-//   unknownWordsNav.textContent = `Ilość słów, których nie znasz: ${unknown.textContent}`;
-// };
-
-// const handleThumbs = function (e) {
-//   showAnimationOnce();
-
-//   if (e.target.classList.contains("thumb-up")) {
-//     knownCounter();
-//   } else {
-//     unknownCounter();
-//   }
-
-//   if (card.classList.contains("rotate")) {
-//     card.classList.remove("rotate");
-//   }
-
-//   const randomEnglishWord = words[Math.trunc(Math.random() * words.length)];
-//   const firstLetterUp = randomEnglishWord.charAt(0).toUpperCase();
-//   const randomEngWord = firstLetterUp + randomEnglishWord.slice(1);
-
-//   const translateEnglishWord = async function () {
-//     const text = await translate(randomEngWord, "pl");
-//     return text;
-//   };
-
-//   translateEnglishWord().then((resp) => createCard(resp, randomEngWord));
-
-//   count();
-// };
-
-// const handleThumbDown = function (e) {
-//   showAnimationOnce();
-
-//   if (e.target.classList.contains("thumb-up")) {
-//     knownCounter();
-//   } else {
-//     unknownCounter();
-//   }
-
-//   if (card.classList.contains("rotate")) {
-//     card.classList.remove("rotate");
-//   }
-
-//   const randomEnglishWord = words[Math.trunc(Math.random() * words.length)];
-//   const firstLetterUp = randomEnglishWord.charAt(0).toUpperCase();
-//   const randomEngWord = firstLetterUp + randomEnglishWord.slice(1);
-
-//   const translateEnglishWord = async function () {
-//     const text = await translate(randomEngWord, "pl");
-//     return text;
-//   };
-
-//   translateEnglishWord().then(function (resp) {
-//     createCard(resp, randomEngWord);
-//   });
-
-//   translateEnglishWord().then((resp) => createList(resp, randomEngWord));
-
-//   count();
-// };
-
-// Function to toggle animation on card when you press the eye button
-// lookTranslateBtn.addEventListener("click", function () {
-//   card.classList.toggle("rotate");
-// });
-
-// Function to show generated text
-// thumbUpBtn.addEventListener("click", handleThumbs);
-
-// Function to show words you can't
-// thumbDownBtn.addEventListener("click", handleThumbDown);
+thumbDownBtn.addEventListener("click", handleThumbDown);
 
 unknownBtn.addEventListener("click", function () {
   unknownContainer.style.opacity = 1;
