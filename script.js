@@ -20,12 +20,11 @@ const unknownCount = document.querySelector(".current-state__counter--unknown");
 const unknownWordsTitle = document.querySelector(
   ".container-unknown__nav-counter--text"
 );
-let curentWord = ''
-function getRandomWord  (array) {
-  const word =array[Math.floor(Math.random() * array.length)];
-  return word
-};
-
+let curentWord = "";
+function getRandomWord(array) {
+  const word = array[Math.floor(Math.random() * array.length)];
+  return word;
+}
 
 let counter = 0;
 let knownCounter = 0;
@@ -95,11 +94,10 @@ startBtn.addEventListener("click", function () {
     const randomEngWord = getRandomWord(words);
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
-    curentWord =randomEngWord
-    
+    curentWord = randomEngWord;
+
     createCard(translatedWord, randomEngWord);
   };
-
 
   translateAndCreateCard();
 });
@@ -124,7 +122,7 @@ thumbUpBtn.addEventListener("click", function () {
 
   const translateAndCreateCard = async () => {
     const randomEngWord = getRandomWord(words);
-    curentWord =randomEngWord
+    curentWord = randomEngWord;
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
 
@@ -143,8 +141,6 @@ thumbDownBtn.addEventListener("click", function () {
   navCounter.textContent = counter;
   unknownCount.textContent = unknownCounter;
 
-
-
   const capitalizeFirstLetter = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
@@ -154,13 +150,12 @@ thumbDownBtn.addEventListener("click", function () {
 
     unknownArray.add(fetchText);
     unknownArray.add(translateText);
-   
+
     const randomEngWord = getRandomWord(words);
-    curentWord = randomEngWord
+    curentWord = randomEngWord;
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
 
-   
     console.log(unknownArray);
 
     createCard(translatedWord, randomEngWord);
