@@ -1,6 +1,6 @@
 // Importing
-import translate from "../../node_modules/translate/index.min.js";
-import { words } from "../../node_modules/popular-english-words/words.js";
+import translate from "./node_modules/translate/index.min.js";
+import { words } from "./node_modules/popular-english-words/words.js";
 
 // Fetching elements
 const lookTranslateBtn = document.querySelector(".eye");
@@ -20,6 +20,12 @@ const unknownCount = document.querySelector(".current-state__counter--unknown");
 const unknownWordsTitle = document.querySelector(
   ".container-unknown__nav-counter--text"
 );
+let curentWord = ''
+function getRandomWord  (array) {
+  const word =array[Math.floor(Math.random() * array.length)];
+  return word
+};
+
 
 let counter = 0;
 let knownCounter = 0;
@@ -89,9 +95,11 @@ startBtn.addEventListener("click", function () {
     const randomEngWord = getRandomWord(words);
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
-
+    curentWord =randomEngWord
+    
     createCard(translatedWord, randomEngWord);
   };
+
 
   translateAndCreateCard();
 });
@@ -116,6 +124,7 @@ thumbUpBtn.addEventListener("click", function () {
 
   const translateAndCreateCard = async () => {
     const randomEngWord = getRandomWord(words);
+    curentWord =randomEngWord
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
 
@@ -134,25 +143,24 @@ thumbDownBtn.addEventListener("click", function () {
   navCounter.textContent = counter;
   unknownCount.textContent = unknownCounter;
 
-  const getRandomWord = (array) => {
-    return array[Math.floor(Math.random() * array.length)];
-  };
+
 
   const capitalizeFirstLetter = (word) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   };
-
   const translateAndCreateCard = async () => {
-    const randomEngWord = getRandomWord(words);
-    const capitalizedWord = capitalizeFirstLetter(randomEngWord);
-    const translatedWord = await translate(capitalizedWord, "pl");
-
-    fetchText = capitalizedWord;
-    translateText = translatedWord;
+    fetchText = curentWord;
+    translateText = curentWord;
 
     unknownArray.add(fetchText);
     unknownArray.add(translateText);
+   
+    const randomEngWord = getRandomWord(words);
+    curentWord = randomEngWord
+    const capitalizedWord = capitalizeFirstLetter(randomEngWord);
+    const translatedWord = await translate(capitalizedWord, "pl");
 
+   
     console.log(unknownArray);
 
     createCard(translatedWord, randomEngWord);
