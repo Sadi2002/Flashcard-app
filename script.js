@@ -130,6 +130,9 @@ const handleThumbDown = () => {
   };
 
   translateAndCreateCard();
+  if (card.classList.contains("rotate")) {
+    card.classList.remove("rotate");
+  }
 };
 
 startBtn.addEventListener("click", function () {
@@ -150,6 +153,18 @@ thumbDownBtn.addEventListener("click", handleThumbDown);
 unknownBtn.addEventListener("click", function () {
   unknownContainer.style.opacity = 1;
   unknownContainer.style.visibility = "visible";
+
+  setTimeout(() => {
+    if (card.classList.contains("rotate")) {
+      card.classList.remove("rotate");
+    }
+  }, 500);
+
+  if (unknownList.childElementCount == 0) {
+    unknownWordsTitle.textContent = "Brawo! Wszystko wiesz.";
+  } else {
+    unknownWordsTitle.textContent = `Ilość słów do powtórzenia: ${unknownList.childElementCount}`;
+  }
 });
 
 backToWords.addEventListener("click", function () {
