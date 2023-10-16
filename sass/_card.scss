@@ -42,3 +42,12 @@
   transform: rotateY(180deg);
   backface-visibility: hidden;
 }
+
+.fa-volume-up {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+  padding: 20px;
+  color: $dark;
+}

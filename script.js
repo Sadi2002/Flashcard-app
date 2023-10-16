@@ -21,6 +21,7 @@ const unknownWordsTitle = document.querySelector(
   ".container-unknown__nav-counter--text"
 );
 const unknownList = document.querySelector(".container-unknown__list");
+const speaker = document.getElementsByClassName(".fa-volume-up");
 
 // Global scope variables
 let currentWord = "";
@@ -33,7 +34,7 @@ knownCount.textContent = knownCounter;
 unknownCount.textContent = unknownCounter;
 
 const createUnknownList = function (word, engWord) {
-  const html = `<p><span>${word} - ${engWord}</span></p>`;
+  const html = `<p><span>${engWord} - ${word}</span></p>`;
 
   unknownList.insertAdjacentHTML("beforeend", html);
 };
@@ -89,7 +90,7 @@ const translateAndCreateCard = async () => {
   const capitalizedWord = capitalizeFirstLetter(randomEngWord);
   const translatedWord = await translate(capitalizedWord, "pl");
 
-  createCard(translatedWord, randomEngWord);
+  createCard(translatedWord, capitalizedWord);
 };
 
 // Function to handle thumb up click
@@ -119,14 +120,17 @@ const handleThumbDown = () => {
 
     convertSetToArray.push(currentWord, translateUnknownWord);
 
-    createUnknownList(convertSetToArray[0], convertSetToArray[1]);
+    createUnknownList(
+      capitalizeFirstLetter(convertSetToArray[0]),
+      capitalizeFirstLetter(convertSetToArray[1])
+    );
 
     const randomEngWord = getRandomWord();
     currentWord = randomEngWord;
     const capitalizedWord = capitalizeFirstLetter(randomEngWord);
     const translatedWord = await translate(capitalizedWord, "pl");
 
-    createCard(translatedWord, randomEngWord);
+    createCard(translatedWord, capitalizedWord);
   };
 
   translateAndCreateCard();
@@ -170,4 +174,11 @@ unknownBtn.addEventListener("click", function () {
 backToWords.addEventListener("click", function () {
   unknownContainer.style.opacity = 0;
   unknownContainer.style.visibility = "hidden";
+});
+
+let speech = new SpeechSynthesisUtterance();
+
+speaker.addEventListener("click", function () {
+  speech.text = "hello ";
+  window.speechSynthesis.speak(speech);
 });

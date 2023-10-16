@@ -214,6 +214,15 @@ body {
           backface-visibility: hidden;
 }
 
+.fa-volume-up {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+  padding: 20px;
+  color: #494949;
+}
+
 .controls {
   display: -webkit-box;
   display: -ms-flexbox;
