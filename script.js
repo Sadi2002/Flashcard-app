@@ -183,7 +183,7 @@ backToWords.addEventListener("click", function () {
 let speech = new SpeechSynthesisUtterance();
 
 speakerIcon.addEventListener("click", function () {
-  speech.lang = "en-G";
+  speech.lang = "en-GB";
   speech.text = currentWord;
   window.speechSynthesis.speak(speech);
 });
