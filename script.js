@@ -21,13 +21,15 @@ const unknownWordsTitle = document.querySelector(
   ".container-unknown__nav-counter--text"
 );
 const unknownList = document.querySelector(".container-unknown__list");
-const speaker = document.getElementsByClassName(".fa-volume-up");
 
 // Global scope variables
 let currentWord = "";
 let counter = 0;
 let knownCounter = 0;
 let unknownCounter = 0;
+
+const speakerIcon = document.createElement("i");
+speakerIcon.classList.add("fas", "fa-volume-up");
 
 navCounter.textContent = counter;
 knownCount.textContent = knownCounter;
@@ -74,6 +76,8 @@ const createCard = function (pol, eng) {
     </div>
   `;
   card.insertAdjacentHTML("beforeend", html);
+  const backCard = document.querySelector(".back-card");
+  backCard.insertAdjacentElement("beforeend", speakerIcon);
 };
 
 // Function to get a random word from the array
@@ -178,7 +182,8 @@ backToWords.addEventListener("click", function () {
 
 let speech = new SpeechSynthesisUtterance();
 
-speaker.addEventListener("click", function () {
-  speech.text = "hello ";
+speakerIcon.addEventListener("click", function () {
+  speech.lang = "en-G";
+  speech.text = currentWord;
   window.speechSynthesis.speak(speech);
 });
