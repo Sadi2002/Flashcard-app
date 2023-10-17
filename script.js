@@ -187,3 +187,7 @@ speakerIcon.addEventListener("click", function () {
   speech.text = currentWord;
   window.speechSynthesis.speak(speech);
 });
+
+if (module.hot) {
+  module.hot.accept();
+}
