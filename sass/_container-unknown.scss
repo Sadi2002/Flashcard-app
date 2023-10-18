@@ -66,6 +66,7 @@
     box-shadow: $light-shadow;
     transition: all 0.3s;
     transform: translateY(0);
+    cursor: pointer;
 
     &:active {
       box-shadow: $lighter-shadow;

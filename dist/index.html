@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcard App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f840a980ae.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/index.a998533d.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__top">
+        <nav class="navigation">
+          <h1 class="navigation__title">
+            Najpopularniejsze słowa po angielsku
+          </h1>
+          <p class="navigation__counter">
+            <span class="navigation__counter--color"></span> z 3425 słów
+          </p>
+        </nav>
+        <section class="current-state">
+          <div class="current-state__unknown">
+            <div class="current-state__circle red-circle"></div>
+            <span class="current-state__title">Nie znam</span>
+            <span class="current-state__counter current-state__counter--unknown"></span>
+          </div>
+          <div class="current-state__known">
+            <div class="current-state__circle green-circle"></div>
+            <span class="current-state__title">Znam</span>
+            <span class="current-state__counter current-state__counter--known"></span>
+          </div>
+        </section>
+        <section class="card">
+          <div class="front-card">
+            <div class="card__title--front">Kliknij start, aby zacząć</div>
+          </div>
+        </section>
+
+        <div class="controls">
+          <div class="controls__box thumb-down">
+            <i class="fas fa-thumbs-down"></i>
+          </div>
+          <div class="controls__box eye">
+            <i class="fas fa-eye"></i>
+          </div>
+          <div class="controls__box thumb-up">
+            <i class="fas fa-thumbs-up"></i>
+          </div>
+          <div class="controls__start">Start</div>
+        </div>
+      </div>
+      <div class="unknown-data">
+        <div class="unknown-btn">Sprawdź słowa, które musisz powtórzyć</div>
+      </div>
+    </div>
+    <div class="container-unknown">
+      <div class="container-unknown__top">
+        <div class="container-unknown__nav">
+          <span class="container-unknown__nav-counter"><span class="container-unknown__nav-counter--text"></span>
+          </span>
+        </div>
+        <div class="container-unknown__list"></div>
+      </div>
+      <div class="container-unknown__back">Wróć do słówek</div>
+    </div>
+
+    <script src="/index.8cfc62b9.js" defer=""></script>
+  </body>
+</html>

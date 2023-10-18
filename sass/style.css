@@ -339,6 +339,17 @@ body {
 
 .unknown-btn {
   font-weight: bold;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .rotate {
@@ -455,6 +466,7 @@ body {
   transition: all 0.3s;
   -webkit-transform: translateY(0);
           transform: translateY(0);
+  cursor: pointer;
 }
 
 .container-unknown__back:active {
