@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -28,5 +28,12 @@ body {
     flex-direction: column;
     align-items: center;
     width: 100%;
+  }
+}
+
+@media (min-width: 767px) {
+  .container {
+    justify-content: flex-start;
+    gap: 50px;
   }
 }

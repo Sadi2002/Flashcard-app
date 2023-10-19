@@ -1,6 +1,6 @@
 .container-unknown {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: $bg-orange;
   display: flex;
   position: absolute;
@@ -13,6 +13,7 @@
   transition: all 0.3s;
   opacity: 0;
   visibility: hidden;
+  overflow-y: hidden;
 
   &__top {
     display: flex;
@@ -67,10 +68,17 @@
     transition: all 0.3s;
     transform: translateY(0);
     cursor: pointer;
+    max-width: 500px;
 
     &:active {
       box-shadow: $lighter-shadow;
       transform: translateY(2px);
     }
+  }
+}
+
+@media (min-width: 767px) {
+  .container-unknown__list {
+    align-items: center;
   }
 }
